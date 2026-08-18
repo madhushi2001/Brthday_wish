@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>සුබ උපන්දිනක්, මගේ ආදරේ! 💖✨</title>
+  <title>සුබ උපන්දිනක් මගේ පැටියෝ! 💖✨</title>
   <!-- Google Fonts & Canvas-Confetti CDN -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600;700;800&family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
@@ -26,7 +26,7 @@
     }
 
     body {
-      font-family: 'Noto Sans Sinhala', sans-serif;
+      font-family: 'Abhaya Libre', 'Outfit', serif;
       background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
       color: var(--text);
       min-height: 100vh;
@@ -59,7 +59,7 @@
       backdrop-filter: blur(8px);
       border-radius: 28px;
       padding: 36px 24px;
-      max-width: 480px;
+      max-width: 520px;
       width: 100%;
       box-shadow: 0 20px 45px rgba(255, 77, 109, 0.2);
       text-align: center;
@@ -68,32 +68,59 @@
       border: 2px solid #ffffff;
     }
 
+    /* Floating Music Control Button */
+    .music-player-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #ffe5ec;
+      border: 2px solid var(--accent);
+      color: var(--primary);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 77, 109, 0.15);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .music-player-btn:hover {
+      transform: scale(1.1);
+      background: var(--primary);
+      color: white;
+    }
+
     .badge {
       display: inline-block;
       background: #ffe5ec;
       color: var(--primary);
       padding: 6px 16px;
       border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       margin-bottom: 12px;
       letter-spacing: 0.5px;
     }
 
     h1 {
-      font-family: 'Noto Sans Sinhala', sans-serif;
+      font-family: 'Abhaya Libre', serif;
+      font-weight: 800;
       color: var(--primary);
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-      line-height: 1.3;
-      font-weight: 700;
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+      line-height: 1.2;
     }
 
     .subtitle {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       color: #a4133c;
       margin-bottom: 24px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* Interactive Cake */
@@ -117,10 +144,58 @@
     }
 
     .hint {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: var(--secondary);
       margin-top: 6px;
-      font-weight: 600;
+      font-weight: 700;
+    }
+
+    /* Photo Gallery Section */
+    .gallery-section {
+      margin: 24px 0;
+      background: #fff0f3;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 18px 14px;
+    }
+
+    .gallery-title {
+      font-family: 'Abhaya Libre', serif;
+      font-weight: 800;
+      color: #800f2f;
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .gallery-card {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* 1:1 Aspect Ratio */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid white;
+      box-shadow: 0 4px 10px rgba(255, 77, 109, 0.15);
+      background: #ffe5ec;
+    }
+
+    .gallery-card img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.08);
     }
 
     /* Trapping Question Box */
@@ -133,10 +208,10 @@
     }
 
     .question-box p {
-      font-weight: 600;
+      font-weight: 700;
       color: #800f2f;
       margin-bottom: 18px;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
     }
 
     .btn-group {
@@ -148,14 +223,14 @@
     }
 
     button {
-      font-family: 'Noto Sans Sinhala', sans-serif;
-      font-size: 0.95rem;
-      padding: 12px 24px;
+      font-family: 'Abhaya Libre', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 10px 26px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.2s ease;
-      font-weight: 600;
     }
 
     .btn-yes {
@@ -173,8 +248,8 @@
       background: #ffe5ec;
       color: var(--primary);
       position: absolute;
-      right: 25px;
-      font-weight: 600;
+      right: 35px;
+      font-weight: 700;
     }
 
     /* Secret Heartfelt Letter */
@@ -191,28 +266,29 @@
     }
 
     .letter-title {
-      font-family: 'Noto Sans Sinhala', sans-serif;
+      font-family: 'Abhaya Libre', serif;
+      font-weight: 800;
       color: var(--primary);
-      font-size: 1.3rem;
-      font-weight: 700;
+      font-size: 1.8rem;
       margin-bottom: 12px;
       text-align: center;
     }
 
     .letter-card p {
       line-height: 1.8;
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       color: #590d22;
       margin-bottom: 12px;
+      font-weight: 600;
     }
 
     .signature {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.6rem;
+      font-family: 'Abhaya Libre', serif;
+      font-size: 1.4rem;
       color: var(--primary);
       text-align: right;
       margin-top: 16px;
-      font-weight: bold;
+      font-weight: 800;
     }
 
     @keyframes fadeIn {
@@ -223,6 +299,12 @@
 </head>
 <body>
 
+  <!-- Background Music Audio Element -->
+  <!-- REPLACE THE 'src' WITH YOUR MP3 MUSIC LINK OR LOCAL FILE PATH -->
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112199.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- Background Floating Hearts -->
   <div class="bg-heart" style="left: 10%; animation-delay: 0s;">💖</div>
   <div class="bg-heart" style="left: 25%; animation-delay: 2s;">💕</div>
@@ -231,10 +313,13 @@
   <div class="bg-heart" style="left: 85%; animation-delay: 3s;">🌸</div>
 
   <div class="container">
-    <span class="badge">👑 මගේ මැණිකට</span>
+    <!-- Music Player Toggle Button -->
+    <button class="music-player-btn" id="musicBtn" onclick="toggleMusic()" title="Play / Pause Music">🎵</button>
+
+    <span class="badge">👑 මගේ ආදරණීය පැටියාට</span>
     
-    <h1>සුබ උපන්දිනක් Sankuttan Bole! 💖</h1>
-    <p class="subtitle">ඔයා මගේ ජීවිතේ හැමදාම එළිය කරනවා ✨</p>
+    <h1>සුබ උපන්දිනක් සංකුට්ටන් බොලේ! 💖</h1>
+    <p class="subtitle">ඔයා මගේ මුළු ලෝකයම හැමදාම ලස්සන කරනවා ✨</p>
 
     <!-- Interactive Cake -->
     <div class="cake-container" onclick="blowCandle()">
@@ -242,33 +327,67 @@
       <p class="hint" id="cakeHint">කේක් එක ටච් කරලා මේழுகுවර්තිය නිවලා ප්‍රාර්ථනාවක් කරන්න! 🕯️</p>
     </div>
 
+    <!-- Photo Gallery Section -->
+    <div class="gallery-section">
+      <div class="gallery-title">අපේ ලස්සන මතකයන් 📸💖</div>
+      <div class="gallery-grid">
+        <!-- REPLACE THE 'src' WITH YOUR OWN PHOTO URLS / FILE PATHS -->
+        <div class="gallery-card">
+          <img src="https://picsum.photos/300/300?random=1" alt="Photo 1">
+        </div>
+        <div class="gallery-card">
+          <img src="https://picsum.photos/300/300?random=2" alt="Photo 2">
+        </div>
+        <div class="gallery-card">
+          <img src="https://picsum.photos/300/300?random=3" alt="Photo 3">
+        </div>
+      </div>
+    </div>
+
     <!-- Playful Trap Question -->
     <div class="question-box">
-      <p id="questionText">ලෝකෙ ඉන්න ලස්සනම, ආදරණීයම කෙල්ල කවුද? 🙈</p>
+      <p id="questionText">පුංචි ප්‍රශ්නයක්: ලෝකයේ ඔයාට වැඩියෙන්ම ආදරේ කරන්නේ කවුද? 🙈</p>
       <div class="btn-group">
         <button class="btn-yes" onclick="sayYes()">ඔයා තමයි! 🥰</button>
-        <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">වෙන කෙනෙක් 😜</button>
+        <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">නෑ 😜</button>
       </div>
     </div>
 
     <!-- Hidden Romantic Letter -->
     <div class="letter-card" id="letterCard">
       <div class="letter-title">මං දැනන් හිටියා ඔයා ඒකම තෝරයි කියලා! 😉❤️</div>
+      
       <p>
-        මගේ මුළු ජීවිතේම වෙච්ච ආදරණීය Sankuttan Bole ට සුබම සුබ උපන්දිනයක් වේවා!
+        මගේ ජීවිතයේ ඉන්න ලස්සනම, ආදරණීයම සහ විශේෂම කෙනාට සුබම සුබ උපන්දිනක් වේවා!
       </p>
       <p>
-        අපි එකට ඉන්න හැම මොහොතකම මගේ හිතට ලැබෙන සතුටටත්, ආදරයටත් ගොඩක් ස්තූතියි. ඔයාගේ හිනාව තමයි මගේ ලෝකෙ තියෙන ලස්සනම දේ.
+        අපි එකට ගත කරන හැම මොහොතකටම මෙච්චර ආදරයක්, හිනාවක් සහ සතුටක් එකතු කරනවාට ගොඩක් ස්තූතියි මගේ රත්තරන්. ඔයාගේ හිනාව තමයි මගේ ලෝකයේ ලස්සනම දේ.
       </p>
       <p>
-        මේ ලැබුවා වූ අලුත් අවුරුද්ද ඔයා පතන හැම හීනයක්ම සැබෑ වෙන, ආදරයෙන් හා සතුටෙන් පිරුණු සුන්දර අවුරුද්දක් වේවා කියලා මම හදවතින්ම ප්‍රාර්ථනා කරනවා.
+        මේ ලැබුවා වූ අලුත් අවුරුද්ද ඔයාගේ හැම හීනයක්ම සැබෑ වෙන, ආදරයෙන් සහ සතුටෙන් පිරුණු සුන්දර අවුරුද්දක් වේවා කියලා මං ප්‍රාර්ථනා කරනවා. ඔයාව මගේ ජීවිතයට ලැබුණු එක ගැන මං ගොඩක් පින් කරලා තියෙනවා.
       </p>
-      <div class="signature">හැමදාමත් ඔයාගේම, <br> Babe 💖</div>
+      <div class="signature">හැමදාමත් ආදරෙන්, <br> ඔයාගේ Babe 💖</div>
     </div>
   </div>
 
   <script>
     let candleBlown = false;
+    let isPlaying = false;
+
+    // Toggle Background Music Play/Pause
+    function toggleMusic() {
+      const music = document.getElementById('bgMusic');
+      const btn = document.getElementById('musicBtn');
+      
+      if (isPlaying) {
+        music.pause();
+        btn.textContent = '🎵';
+      } else {
+        music.play();
+        btn.textContent = '🎶';
+      }
+      isPlaying = !isPlaying;
+    }
 
     // Blow candle logic + Romantic Heart Confetti Burst
     function blowCandle() {
@@ -277,9 +396,18 @@
       
       if (!candleBlown) {
         cake.textContent = '🍰';
-        hint.textContent = 'ප්‍රාර්ථනාව සාර්ථක වේවා! සුබම සුබ උපන්දිනයක් ✨💖';
+        hint.textContent = 'මෙழுகுවර්තිය නිෙව්වා! ඔයාගේ හැම ප්‍රාර්ථනාවක්ම සැබෑ වේවා ✨💖';
         candleBlown = true;
         
+        // Auto-play music when candle is blown if not playing already
+        const music = document.getElementById('bgMusic');
+        if (!isPlaying) {
+          music.play().then(() => {
+            isPlaying = true;
+            document.getElementById('musicBtn').textContent = '🎶';
+          }).catch(() => {});
+        }
+
         // Trigger celebratory heart/pink confetti
         confetti({
           particleCount: 100,
@@ -301,7 +429,7 @@
     // "YES" button click logic
     function sayYes() {
       document.getElementById('letterCard').style.display = 'block';
-      document.getElementById('questionText').textContent = 'නිවැරදි පිළිතුර! මෙන්න ඔයාගේ උපන්දින පණිවිඩය: 👇❤️';
+      document.getElementById('questionText').textContent = '100% නිවැරදියි! මෙන්න ඔයා වෙනුවෙන් මගේ උපන්දින පණිවිඩය: 👇❤️';
       
       // Heart Shower Burst
       confetti({
