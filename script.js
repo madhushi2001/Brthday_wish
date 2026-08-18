@@ -42,31 +42,18 @@ const openCardBtn = document.getElementById('openCardBtn');
 card.addEventListener('click', ()=>card.classList.toggle('flipped'));
 openCardBtn.addEventListener('click', ()=>card.classList.toggle('flipped'));
 
-// Countdown/Age counter: simple example using birthdate
-const birthdate = new Date(); // default: now (user can modify)
-// For demonstration, set a sample birthdate - change as needed
-birthdate.setFullYear(birthdate.getFullYear() - 25);
-
+// Age counter: fixed to 27 per request (you can change to calculate from birthdate if desired)
 function updateCounters(){
-  const now = new Date();
-  const years = now.getFullYear() - birthdate.getFullYear();
-  const days = Math.floor((now - birthdate)/(1000*60*60*24));
-  document.getElementById('years').textContent = years;
-  document.getElementById('days').textContent = days;
+  const yearsEl = document.getElementById('years');
+  yearsEl.textContent = 27; // set age to 27
+  yearsEl.classList.add('sparkle');
 }
 updateCounters();
 
-// Gallery images: include provided images and attached ones (user-provided paths)
-const images = [
-  'selected/1.jpg',
-  'selected/2.jpg',
-  'selected/3.jpg',
-  'selected/4.jpg',
-  'selected/5.jpg',
-  'selected/6.jpg'
-];
-
-// The user asked to use specific WhatsApp images. We'll reference local OneDrive paths if available.
+// Gallery images: expect photos to be copied into `selected/` inside the project.
+const images = [];
+for(let i=1;i<=20;i++) images.push(`selected/${String(i).padStart(2,'0')}.jpg`);
+// Also keep the two OneDrive paths as fallback if you prefer absolute paths
 const extra = [
   'c:/Users/mdhus/OneDrive/Pictures/love/WhatsApp Image 2026-08-16 at 10.28.42.jpeg',
   'c:/Users/mdhus/OneDrive/Pictures/love/WhatsApp Image 2026-08-16 at 10.28.41.jpeg'
@@ -81,6 +68,8 @@ function buildGallery(){
     const img = document.createElement('img');
     img.src = src;
     img.alt = 'Memory '+(i+1);
+    img.loading = 'lazy';
+    img.addEventListener('click', ()=>openLightbox(src, `Memory ${i+1}`));
     const cap = document.createElement('div');
     cap.className = 'caption';
     cap.textContent = 'Memory '+(i+1);
@@ -90,6 +79,24 @@ function buildGallery(){
   })
 }
 buildGallery();
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbClose = document.getElementById('lbClose');
+
+function openLightbox(src, caption){
+  lbImg.src = src;
+  lbCaption.textContent = caption || '';
+  lightbox.setAttribute('aria-hidden','false');
+}
+function closeLightbox(){
+  lightbox.setAttribute('aria-hidden','true');
+  lbImg.src = '';
+}
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
 
 // Basic accessibility: keyboard support
 celebrateBtn.addEventListener('keyup',(e)=>{ if(e.key==='Enter') celebrateBtn.click(); });

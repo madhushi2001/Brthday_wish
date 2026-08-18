@@ -48,3 +48,14 @@ Alternative quick deploy options:
 - Vercel: import the repo and deploy from the dashboard.
 
 If you want, I can create a `selected/` folder and copy the two OneDrive images into the project to avoid absolute paths. Tell me if you'd like that.
+ 
+Using your provided images
+-------------------------
+To make the gallery load the photos you attached, copy your images into a folder named `selected` at the project root (e:/Projects/Brthday_wish/selected). The site expects files named in numeric order, for example:
+
+- `selected/01.jpg`
+- `selected/02.jpg`
+- `selected/03.jpg`
+- ... up to `selected/20.jpg`
+
+If you prefer to keep the images in OneDrive, the gallery script includes the two absolute OneDrive paths as fallback. For portability, copying into `selected/` is recommended.
