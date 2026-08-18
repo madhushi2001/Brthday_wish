@@ -1,4 +1,18 @@
+:root{
+  --bg:#FFF9F7;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Sacramento&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root{
+  --bg:#FFF9F7;
+  --card:#ffffff;
+  --accent:#F6C1D1;
+  --accent-2:#B8F1D8;
+  --accent-3:#FFD36F;
+  --muted:#6B7280;
+  --glass: rgba(255,255,255,0.7);
+}
 :root{
   --bg:#FFF9F7;
   --card:#ffffff;
@@ -11,6 +25,7 @@
 *{box-sizing:border-box}
 body{font-family:Inter,system-ui,Segoe UI,Arial; background:linear-gradient(180deg,var(--bg),#FFF);margin:0;color:#111}
 .container{max-width:1100px;margin:32px auto;padding:16px}
+.container::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,240,250,0.6) 0.5px, transparent 0.6px);background-size:60px 60px;opacity:.6}
 .hero{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(135deg, #FFF8FB, #F9FFF8);border-radius:18px;box-shadow:0 12px 40px rgba(2,6,23,0.08);border:1px solid rgba(0,0,0,0.03)}
 .hero-content{flex:1}
 .title{font-family: 'Poppins', system-ui, sans-serif; font-size:clamp(26px,5vw,48px);margin:0 0 8px;color:#0f172a}
@@ -21,6 +36,17 @@ body{font-family:Inter,system-ui,Segoe UI,Arial; background:linear-gradient(180d
 .btn.primary{background:linear-gradient(90deg,#FF9AA2,#FFB7B2);color:#fff;box-shadow:0 8px 20px rgba(255,151,151,0.15)}
 .btn.ghost{background:transparent;border:1px dashed rgba(15,23,42,0.06)}
 .hero-media{width:260px;display:flex;justify-content:center}
+
+/* Hero photo */
+.hero-photo-wrap{position:relative;width:220px;height:220px;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px rgba(2,6,23,0.12)}
+.hero-photo{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1);transition:transform .6s ease}
+.hero-photo-wrap:hover .hero-photo{transform:scale(1.04)}
+.hero .balloons{position:absolute;right:18px;top:-10px;pointer-events:none}
+.balloon{display:block;width:36px;height:48px;border-radius:18px;background:linear-gradient(180deg,#FFD1E2,#FF9AA2);opacity:.95;position:relative;box-shadow:0 8px 18px rgba(2,6,23,0.12)}
+.b1{transform:translateY(0) translateX(0);animation:float 6s ease-in-out infinite}
+.b2{width:30px;height:40px;background:linear-gradient(180deg,#C7F7E7,#8EE4B2);margin-left:-10px;animation:float 7s ease-in-out .8s infinite}
+.b3{width:28px;height:36px;background:linear-gradient(180deg,#FFF0B3,#FFD36F);margin-left:-6px;animation:float 5.5s ease-in-out .4s infinite}
+@keyframes float{0%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}100%{transform:translateY(0) rotate(-3deg)}}
 /* Cake */
 .cake{width:180px;height:160px;position:relative}
 .layer{border-radius:12px}
@@ -36,6 +62,11 @@ body{font-family:Inter,system-ui,Segoe UI,Arial; background:linear-gradient(180d
 .counter-card{flex:1;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04);text-align:center}
 .count{font-size:34px;font-weight:800;color:#0f172a}
 .label{color:var(--muted);letter-spacing:0.6px}
+
+/* sparkle effect for the age */
+.sparkle{position:relative}
+.sparkle::after{content:"";position:absolute;left:50%;top:-6px;width:10px;height:10px;background:radial-gradient(circle,#fff,rgba(255,255,255,0.2));border-radius:50%;transform:translateX(-50%) scale(0);animation:spark 1.4s ease-in-out infinite}
+@keyframes spark{0%{transform:translateX(-50%) scale(0)}30%{transform:translateX(-50%) scale(1)}100%{transform:translateX(-50%) scale(0)}}
 /* Gallery */
 .gallery{margin-top:20px}
 .gallery h2{margin:0 0 12px}
@@ -53,6 +84,11 @@ body{font-family:Inter,system-ui,Segoe UI,Arial; background:linear-gradient(180d
 .card-back{background:linear-gradient(135deg,#E6FFF4,#FFFFFF);transform:rotateY(180deg)}
 .card.flipped .card-front{transform:rotateY(180deg)}
 .card.flipped .card-back{transform:rotateY(360deg)}
+
+/* entrance animation */
+.hero{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.hero.enter{opacity:1;transform:translateY(0)}
+
 /* Confetti canvas */
 #confettiCanvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none}
 

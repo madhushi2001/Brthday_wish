@@ -98,6 +98,22 @@ function closeLightbox(){
 lbClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
 
+// Entrance animations and staggered gallery reveal
+document.addEventListener('DOMContentLoaded', ()=>{
+  const hero = document.querySelector('.hero');
+  if(hero) requestAnimationFrame(()=> hero.classList.add('enter'));
+  const items = document.querySelectorAll('.grid-item');
+  items.forEach((it, idx)=>{
+    it.style.opacity = 0;
+    it.style.transform = 'translateY(10px)';
+    setTimeout(()=>{
+      it.style.transition = 'opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1)';
+      it.style.opacity = 1;
+      it.style.transform = 'translateY(0)';
+    }, 120 * idx);
+  });
+});
+
 // Basic accessibility: keyboard support
 celebrateBtn.addEventListener('keyup',(e)=>{ if(e.key==='Enter') celebrateBtn.click(); });
 openCardBtn.addEventListener('keyup',(e)=>{ if(e.key==='Enter') openCardBtn.click(); });
