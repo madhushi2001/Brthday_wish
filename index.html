@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Birthday — Wishing App</title>
-  <!-- Font Awesome for extra icons -->
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -15,26 +15,50 @@
 
     body {
       font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-      background: linear-gradient(145deg, #0b0c1a 0%, #1a1e30 100%);
+      background: radial-gradient(circle at 20% 30%, #1a1e3a, #0b0d1a 80%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
+      position: relative;
+    }
+
+    /* Animated stars background (via pseudo) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,240,0.4), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,215,0,0.3), transparent),
+        radial-gradient(3px 3px at 120px 200px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 300px 80px, rgba(255,215,0,0.4), transparent),
+        radial-gradient(2px 2px at 500px 400px, rgba(255,255,255,0.3), transparent),
+        radial-gradient(3px 3px at 700px 150px, rgba(255,215,0,0.5), transparent),
+        radial-gradient(2px 2px at 900px 600px, rgba(255,255,240,0.3), transparent);
+      background-size: 200px 200px;
+      background-repeat: repeat;
+      opacity: 0.6;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .container {
       max-width: 1200px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border-radius: 3.5rem;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 215, 0, 0.15);
-      border: 1px solid rgba(255, 215, 0, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 4.5rem;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 215, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 215, 0, 0.08);
       position: relative;
-      overflow: hidden;
+      z-index: 2;
       transition: all 0.2s;
     }
 
@@ -45,7 +69,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 2rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
     .hero-content {
@@ -53,78 +77,90 @@
     }
 
     .title {
-      font-size: 3.6rem;
+      font-size: 4rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #f9e05d, #f5b041, #f1c40f);
+      background: linear-gradient(135deg, #f9e05d 0%, #f5b041 50%, #f1c40f 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 20px rgba(241, 196, 15, 0.3);
+      text-shadow: 0 0 40px rgba(241, 196, 15, 0.2);
       letter-spacing: -0.5px;
       line-height: 1.1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title i {
+      font-size: 3.2rem;
+      color: #f1c40f;
+      filter: drop-shadow(0 0 20px rgba(241, 196, 15, 0.6));
     }
 
     .subtitle {
-      font-size: 1.3rem;
-      margin: 0.75rem 0 1.8rem;
-      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.4rem;
+      margin: 0.75rem 0 2rem;
+      color: rgba(255, 255, 255, 0.85);
       font-weight: 300;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
       border-left: 4px solid #f1c40f;
-      padding-left: 1.2rem;
+      padding-left: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .btn {
-      padding: 0.8rem 2.2rem;
+      padding: 0.9rem 2.6rem;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.05rem;
       border: none;
       cursor: pointer;
-      transition: 0.25s ease;
+      transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      background: rgba(255, 255, 255, 0.05);
+      gap: 0.7rem;
+      background: rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(4px);
       color: white;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
     .btn.primary {
-      background: linear-gradient(135deg, #f1c40f, #f39c12);
+      background: linear-gradient(135deg, #f7dc6f, #f1c40f, #f39c12);
       color: #0b0c1a;
       border: none;
       font-weight: 700;
+      box-shadow: 0 8px 28px rgba(241, 196, 15, 0.3);
     }
 
     .btn.primary:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 28px rgba(241, 196, 15, 0.5);
+      transform: scale(1.06) translateY(-3px);
+      box-shadow: 0 16px 40px rgba(241, 196, 15, 0.5);
     }
 
     .btn.ghost {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 215, 0, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 215, 0, 0.35);
       color: #f9e05d;
     }
 
     .btn.ghost:hover {
       background: rgba(241, 196, 15, 0.15);
       border-color: #f1c40f;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(241, 196, 15, 0.15);
     }
 
-    /* --- Cake (3D style) --- */
+    /* --- Cake (luxury 3D) --- */
     .hero-media {
-      flex: 0 0 200px;
+      flex: 0 0 210px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -132,87 +168,91 @@
 
     .cake {
       position: relative;
-      width: 150px;
-      height: 170px;
+      width: 160px;
+      height: 180px;
       cursor: pointer;
-      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6));
-      transition: transform 0.3s;
+      filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.7));
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .cake:hover {
-      transform: scale(1.03);
+      transform: scale(1.05) rotate(-2deg);
     }
 
     .layer {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      border-radius: 20px 20px 8px 8px;
+      border-radius: 24px 24px 12px 12px;
       width: 100%;
-      height: 40px;
-      background: #d4a373;
-      box-shadow: inset 0 -6px 0 #b5835a, 0 8px 18px rgba(0, 0, 0, 0.4);
+      height: 44px;
+      background: linear-gradient(180deg, #d4a373, #b5835a);
+      box-shadow: inset 0 -6px 0 #8b6542, 0 12px 28px rgba(0, 0, 0, 0.5);
+      border-bottom: 2px solid rgba(255, 215, 0, 0.1);
     }
 
     .layer.top {
-      bottom: 80px;
-      width: 75%;
-      height: 35px;
-      background: #fad3a0;
-      box-shadow: inset 0 -4px 0 #d4a373, 0 8px 18px rgba(0, 0, 0, 0.4);
-      border-radius: 30px 30px 12px 12px;
+      bottom: 84px;
+      width: 72%;
+      height: 36px;
+      background: linear-gradient(180deg, #fad3a0, #e9b37e);
+      box-shadow: inset 0 -4px 0 #c58d5e, 0 12px 28px rgba(0, 0, 0, 0.5);
+      border-radius: 40px 40px 16px 16px;
     }
 
     .layer.mid {
-      bottom: 45px;
-      width: 90%;
-      height: 38px;
-      background: #e9b37e;
-      box-shadow: inset 0 -5px 0 #c58d5e, 0 8px 18px rgba(0, 0, 0, 0.4);
+      bottom: 48px;
+      width: 88%;
+      height: 40px;
+      background: linear-gradient(180deg, #e9b37e, #d4a373);
+      box-shadow: inset 0 -5px 0 #b5835a, 0 12px 28px rgba(0, 0, 0, 0.5);
     }
 
     .layer.base {
-      bottom: 5px;
+      bottom: 4px;
       width: 100%;
-      height: 44px;
-      background: #d4a373;
-      box-shadow: inset 0 -6px 0 #b5835a, 0 8px 18px rgba(0, 0, 0, 0.5);
-      border-radius: 18px 18px 12px 12px;
+      height: 48px;
+      background: linear-gradient(180deg, #d4a373, #b5835a);
+      box-shadow: inset 0 -6px 0 #8b6542, 0 16px 36px rgba(0, 0, 0, 0.6);
+      border-radius: 20px 20px 16px 16px;
     }
 
     .candle {
       position: absolute;
-      top: -35px;
+      top: -38px;
       left: 50%;
       transform: translateX(-50%);
-      width: 14px;
-      height: 40px;
-      background: linear-gradient(180deg, #f7d44a, #e6b422);
-      border-radius: 8px 8px 4px 4px;
-      box-shadow: 0 6px 0 #b38b2a, 0 10px 20px rgba(0, 0, 0, 0.3);
+      width: 16px;
+      height: 44px;
+      background: linear-gradient(180deg, #f7d44a, #d4a017);
+      border-radius: 10px 10px 4px 4px;
+      box-shadow: 0 8px 0 #b38b2a, 0 16px 30px rgba(0, 0, 0, 0.4);
     }
 
     .candle::after {
       content: '';
       position: absolute;
-      top: -4px;
+      top: -8px;
       left: 50%;
       transform: translateX(-50%);
-      width: 6px;
-      height: 14px;
-      background: #f1c40f;
-      border-radius: 50% 50% 50% 50% / 60% 60% 20% 20%;
-      filter: blur(0.5px);
-      box-shadow: 0 0 20px #f39c12, 0 0 40px #f1c40f, 0 0 80px #f39c12;
-      animation: flicker 0.9s infinite alternate;
+      width: 10px;
+      height: 20px;
+      background: radial-gradient(circle, #fff9c4, #f1c40f);
+      border-radius: 60% 60% 30% 30% / 80% 80% 20% 20%;
+      filter: blur(1px);
+      box-shadow: 
+        0 0 30px #f39c12,
+        0 0 60px #f1c40f,
+        0 0 100px #f39c12;
+      animation: flicker 1s infinite alternate;
     }
 
     @keyframes flicker {
-      0% { transform: translateX(-50%) scale(1) rotate(0deg); opacity: 0.9; }
-      100% { transform: translateX(-50%) scale(1.2) rotate(3deg); opacity: 1; }
+      0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.9; }
+      100% { transform: translateX(-50%) scale(1.3) rotate(4deg); opacity: 1; }
     }
 
-    /* --- Counter --- */
+    /* --- Counter (glow) --- */
     .counter {
       display: flex;
       justify-content: center;
@@ -220,88 +260,95 @@
     }
 
     .counter-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      padding: 1.8rem 3rem;
-      border-radius: 80px;
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      padding: 1.8rem 4rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 215, 0, 0.1);
       text-align: center;
       transition: 0.3s;
     }
 
     .counter-card:hover {
       border-color: #f1c40f;
-      background: rgba(255, 215, 0, 0.05);
+      background: rgba(255, 215, 0, 0.04);
+      box-shadow: 0 20px 50px rgba(241, 196, 15, 0.08);
     }
 
     .count {
-      font-size: 4.5rem;
+      font-size: 5rem;
       font-weight: 800;
       background: linear-gradient(135deg, #f9e05d, #f39c12);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       line-height: 1;
+      text-shadow: 0 0 40px rgba(241, 196, 15, 0.15);
     }
 
     .label {
       color: rgba(255, 255, 255, 0.7);
       font-size: 1.1rem;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       font-weight: 300;
+      margin-top: 4px;
     }
 
     /* --- Gallery --- */
     .gallery h2 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 300;
       color: #f9e05d;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
       letter-spacing: 1px;
-      border-bottom: 2px solid rgba(241, 196, 15, 0.2);
-      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(241, 196, 15, 0.15);
+      padding-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
     }
 
     .grid img {
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: cover;
-      border-radius: 28px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 215, 0, 0.15);
-      transition: 0.3s;
+      border-radius: 32px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 215, 0, 0.08);
+      transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       cursor: pointer;
-      filter: brightness(0.9) saturate(1.1);
+      filter: brightness(0.85) saturate(1.2) contrast(1.05);
     }
 
     .grid img:hover {
-      transform: scale(1.04) rotate(-1deg);
+      transform: scale(1.05) rotate(-1deg);
       border-color: #f1c40f;
-      filter: brightness(1.05);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      filter: brightness(1.05) saturate(1.3);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.8);
     }
 
-    /* --- Lightbox --- */
+    /* --- Lightbox (elegant) --- */
     .lightbox {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       visibility: hidden;
       opacity: 0;
-      transition: 0.3s;
+      transition: 0.4s ease;
       z-index: 999;
       padding: 2rem;
     }
@@ -315,49 +362,50 @@
       position: absolute;
       top: 30px;
       right: 40px;
-      font-size: 2.8rem;
+      font-size: 3rem;
       background: none;
       border: none;
-      color: white;
+      color: rgba(255,255,255,0.7);
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.3s;
       font-weight: 200;
     }
 
     .lb-close:hover {
       color: #f1c40f;
-      transform: rotate(90deg);
+      transform: rotate(90deg) scale(1.1);
     }
 
     #lbImg {
       max-width: 80%;
       max-height: 70vh;
-      border-radius: 32px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 40px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+      border: 2px solid rgba(255, 215, 0, 0.15);
     }
 
     .lb-caption {
       color: #f0e6d0;
       font-size: 1.2rem;
-      margin-top: 1rem;
-      background: rgba(0,0,0,0.4);
-      padding: 0.6rem 2rem;
-      border-radius: 40px;
+      margin-top: 1.2rem;
+      background: rgba(0,0,0,0.3);
+      padding: 0.6rem 2.2rem;
+      border-radius: 60px;
       backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,215,0,0.05);
     }
 
-    /* --- Birthday Card (flip) --- */
+    /* --- Birthday Card (premium flip) --- */
     .card-area {
       display: flex;
       justify-content: center;
-      margin: 3rem 0 1.5rem;
+      margin: 3.5rem 0 1rem;
     }
 
     .card {
-      width: 320px;
-      height: 200px;
-      perspective: 1200px;
+      width: 340px;
+      height: 210px;
+      perspective: 1400px;
       cursor: pointer;
     }
 
@@ -366,55 +414,63 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 40px;
+      border-radius: 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1.8rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-      border: 1px solid rgba(255, 215, 0, 0.2);
+      padding: 2rem;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+      transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      border: 1px solid rgba(255, 215, 0, 0.1);
     }
 
     .card-front {
       background: linear-gradient(145deg, #1e233b, #2a2f4a);
       color: #f9e05d;
       transform: rotateY(0deg);
+      backdrop-filter: blur(8px);
     }
 
     .card-front h3 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .card-front p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.95rem;
+      margin-top: 0.6rem;
+      letter-spacing: 1px;
     }
 
     .card-back {
-      background: linear-gradient(145deg, #f9e05d, #f5b041);
+      background: linear-gradient(145deg, #f9e05d, #f5b041, #f39c12);
       color: #0b0c1a;
       transform: rotateY(180deg);
       font-weight: 500;
+      box-shadow: 0 24px 48px rgba(241, 196, 15, 0.2);
     }
 
     .card-back h3 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
     }
 
     .card-back p {
       text-align: center;
-      line-height: 1.5;
+      line-height: 1.6;
+      max-width: 90%;
     }
 
     .card-back .sign {
       margin-top: 0.8rem;
       font-style: italic;
       font-weight: 600;
+      opacity: 0.8;
     }
 
     .card.flipped .card-front {
@@ -425,7 +481,7 @@
       transform: rotateY(0deg);
     }
 
-    /* --- Confetti canvas --- */
+    /* --- Confetti canvas (on top) --- */
     #confettiCanvas {
       position: fixed;
       top: 0;
@@ -436,20 +492,21 @@
       z-index: 1000;
     }
 
-    /* Responsive */
-    @media (max-width: 700px) {
-      .container { padding: 1.5rem; }
-      .title { font-size: 2.8rem; }
+    /* responsive */
+    @media (max-width: 800px) {
+      .container { padding: 2rem 1.5rem; }
+      .title { font-size: 3rem; }
       .hero { flex-direction: column; align-items: center; text-align: center; }
       .subtitle { border-left: none; padding-left: 0; }
       .hero-actions { justify-content: center; }
-      .counter-card { padding: 1rem 2rem; }
-      .count { font-size: 3.5rem; }
-      .card { width: 280px; height: 190px; }
     }
 
-    @media (max-width: 450px) {
-      .title { font-size: 2.2rem; }
+    @media (max-width: 500px) {
+      .title { font-size: 2.5rem; }
+      .counter-card { padding: 1.2rem 1.8rem; }
+      .count { font-size: 3.8rem; }
+      .card { width: 280px; height: 190px; }
+      .btn { padding: 0.7rem 1.8rem; font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -458,7 +515,9 @@
     <!-- Hero -->
     <header class="hero">
       <div class="hero-content">
-        <h1 class="title"><i class="fas fa-star" style="color: #f1c40f; font-size: 2.8rem; margin-right: 8px;"></i> Happy Birthday!</h1>
+        <h1 class="title">
+          <i class="fas fa-crown"></i> Happy Birthday!
+        </h1>
         <p class="subtitle">To the one who makes every day brighter — stay awesome.</p>
         <div class="hero-actions">
           <button id="celebrateBtn" class="btn primary"><i class="fas fa-glass-cheers"></i> Celebrate!</button>
@@ -479,13 +538,13 @@
     <section class="counter">
       <div class="counter-card">
         <div class="count" id="years">0</div>
-        <div class="label"><i class="fas fa-crown" style="margin-right: 6px;"></i> Years of Awesome</div>
+        <div class="label"><i class="fas fa-star" style="margin-right: 8px; color: #f1c40f;"></i> Years of Awesome</div>
       </div>
     </section>
 
     <!-- Gallery -->
     <section class="gallery">
-      <h2><i class="fas fa-images" style="margin-right: 12px;"></i> Memories</h2>
+      <h2><i class="fas fa-images"></i> Memories</h2>
       <div class="grid" id="galleryGrid"></div>
     </section>
 
@@ -496,7 +555,7 @@
       <div id="lbCaption" class="lb-caption"></div>
     </div>
 
-    <!-- Birthday Card Flip -->
+    <!-- Birthday Card -->
     <section class="card-area">
       <div class="card" id="birthdayCard">
         <div class="card-front">
@@ -511,7 +570,6 @@
       </div>
     </section>
 
-    <!-- Confetti canvas -->
     <canvas id="confettiCanvas"></canvas>
   </main>
 
@@ -527,14 +585,14 @@
         if (current >= target) clearInterval(interval);
       }, 80);
 
-      // --- Gallery images (lovely placeholders) ---
+      // --- Gallery images (enriched with lovely placeholders) ---
       const galleryData = [
-        { src: 'https://picsum.photos/id/26/300/300', alt: 'Memory 1' },
-        { src: 'https://picsum.photos/id/64/300/300', alt: 'Memory 2' },
-        { src: 'https://picsum.photos/id/99/300/300', alt: 'Memory 3' },
-        { src: 'https://picsum.photos/id/135/300/300', alt: 'Memory 4' },
-        { src: 'https://picsum.photos/id/160/300/300', alt: 'Memory 5' },
-        { src: 'https://picsum.photos/id/177/300/300', alt: 'Memory 6' },
+        { src: 'https://picsum.photos/id/26/300/300', alt: 'Sunset memories' },
+        { src: 'https://picsum.photos/id/64/300/300', alt: 'Adventure together' },
+        { src: 'https://picsum.photos/id/99/300/300', alt: 'Laughs & joy' },
+        { src: 'https://picsum.photos/id/135/300/300', alt: 'Quiet moments' },
+        { src: 'https://picsum.photos/id/160/300/300', alt: 'Celebration' },
+        { src: 'https://picsum.photos/id/177/300/300', alt: 'Forever us' },
       ];
 
       const grid = document.getElementById('galleryGrid');
@@ -581,21 +639,16 @@
         card.classList.toggle('flipped');
       });
 
-      // "Open Birthday Card" button triggers flip
       document.getElementById('openCardBtn').addEventListener('click', () => {
         card.classList.add('flipped');
       });
 
-      // --- Cake candle click : celebrate! ---
+      // --- Cake + celebrate ---
       const cake = document.getElementById('cake');
-      cake.addEventListener('click', () => {
-        triggerCelebration();
-      });
-
-      // --- Celebrate button ---
+      cake.addEventListener('click', triggerCelebration);
       document.getElementById('celebrateBtn').addEventListener('click', triggerCelebration);
 
-      // --- Confetti (improved) ---
+      // --- Confetti (enhanced) ---
       const canvas = document.getElementById('confettiCanvas');
       const ctx = canvas.getContext('2d');
       let W, H;
@@ -613,21 +666,22 @@
         constructor() {
           this.x = Math.random() * W;
           this.y = Math.random() * H - H * 0.2;
-          this.w = Math.random() * 10 + 5;
-          this.h = Math.random() * 6 + 3;
-          this.color = `hsl(${Math.random() * 60 + 30}, 80%, 60%)`;
-          this.vx = (Math.random() - 0.5) * 2.5;
-          this.vy = Math.random() * 3 + 2.5;
+          this.w = Math.random() * 12 + 5;
+          this.h = Math.random() * 7 + 3;
+          const hue = Math.random() * 60 + 30; // gold/amber range
+          this.color = `hsl(${hue}, 85%, 65%)`;
+          this.vx = (Math.random() - 0.5) * 3;
+          this.vy = Math.random() * 4 + 2;
           this.rotation = Math.random() * 360;
-          this.rotSpeed = (Math.random() - 0.5) * 6;
-          this.opacity = Math.random() * 0.6 + 0.5;
+          this.rotSpeed = (Math.random() - 0.5) * 8;
+          this.opacity = Math.random() * 0.7 + 0.3;
           this.life = 1;
-          this.decay = 0.003 + Math.random() * 0.005;
+          this.decay = 0.002 + Math.random() * 0.006;
         }
         update() {
           this.x += this.vx;
           this.y += this.vy;
-          this.vy += 0.06;
+          this.vy += 0.07;
           this.rotation += this.rotSpeed;
           this.life -= this.decay;
           this.opacity = this.life * 0.8 + 0.2;
@@ -637,16 +691,16 @@
           ctx.translate(this.x, this.y);
           ctx.rotate((this.rotation * Math.PI) / 180);
           ctx.globalAlpha = Math.min(this.opacity, 0.9);
-          ctx.fillStyle = this.color;
           ctx.shadowColor = 'rgba(255,215,0,0.2)';
-          ctx.shadowBlur = 12;
+          ctx.shadowBlur = 16;
+          ctx.fillStyle = this.color;
           ctx.fillRect(-this.w/2, -this.h/2, this.w, this.h);
           ctx.restore();
         }
-        isDead() { return this.life <= 0 || this.y > H + 30; }
+        isDead() { return this.life <= 0 || this.y > H + 40; }
       }
 
-      function launchConfetti(count = 140) {
+      function launchConfetti(count = 160) {
         for (let i = 0; i < count; i++) {
           confettiPieces.push(new Confetti());
         }
@@ -672,18 +726,20 @@
       }
 
       function triggerCelebration() {
-        // burst effect
-        launchConfetti(200);
-        // extra bursts
-        setTimeout(() => launchConfetti(120), 300);
-        setTimeout(() => launchConfetti(100), 700);
-        // also flip card randomly? no, but add a little shake to cake
-        cake.style.transform = 'scale(1.1) rotate(-2deg)';
-        setTimeout(() => cake.style.transform = '', 400);
+        launchConfetti(220);
+        setTimeout(() => launchConfetti(140), 350);
+        setTimeout(() => launchConfetti(100), 750);
+        // cake wiggle
+        cake.style.transform = 'scale(1.12) rotate(-3deg)';
+        setTimeout(() => cake.style.transform = '', 500);
+        // also add a little burst on the counter
+        const counter = document.querySelector('.counter-card');
+        counter.style.transform = 'scale(1.04)';
+        setTimeout(() => counter.style.transform = '', 400);
       }
 
-      // init with some confetti to be festive
-      setTimeout(() => launchConfetti(50), 200);
+      // initial festive touch
+      setTimeout(() => launchConfetti(60), 300);
     })();
   </script>
 </body>
