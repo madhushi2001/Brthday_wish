@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday, My Love! 💖✨</title>
+  <title>සුබ උපන්දිනක්, මගේ ආදරේ! 💖✨</title>
   <!-- Google Fonts & Canvas-Confetti CDN -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
@@ -26,7 +26,7 @@
     }
 
     body {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Noto Sans Sinhala', sans-serif;
       background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
       color: var(--text);
       min-height: 100vh;
@@ -81,11 +81,12 @@
     }
 
     h1 {
-      font-family: 'Fredoka', sans-serif;
+      font-family: 'Noto Sans Sinhala', sans-serif;
       color: var(--primary);
-      font-size: 2.1rem;
-      margin-bottom: 6px;
-      line-height: 1.2;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      font-weight: 700;
     }
 
     .subtitle {
@@ -147,13 +148,14 @@
     }
 
     button {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1rem;
-      padding: 12px 28px;
+      font-family: 'Noto Sans Sinhala', sans-serif;
+      font-size: 0.95rem;
+      padding: 12px 24px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.2s ease;
+      font-weight: 600;
     }
 
     .btn-yes {
@@ -171,7 +173,7 @@
       background: #ffe5ec;
       color: var(--primary);
       position: absolute;
-      right: 35px;
+      right: 25px;
       font-weight: 600;
     }
 
@@ -189,23 +191,24 @@
     }
 
     .letter-title {
-      font-family: 'Dancing Script', cursive;
+      font-family: 'Noto Sans Sinhala', sans-serif;
       color: var(--primary);
-      font-size: 2rem;
+      font-size: 1.3rem;
+      font-weight: 700;
       margin-bottom: 12px;
       text-align: center;
     }
 
     .letter-card p {
-      line-height: 1.7;
-      font-size: 0.98rem;
+      line-height: 1.8;
+      font-size: 0.95rem;
       color: #590d22;
       margin-bottom: 12px;
     }
 
     .signature {
       font-family: 'Dancing Script', cursive;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: var(--primary);
       text-align: right;
       margin-top: 16px;
@@ -228,41 +231,39 @@
   <div class="bg-heart" style="left: 85%; animation-delay: 3s;">🌸</div>
 
   <div class="container">
-    <span class="badge">👑 To My Favorite Person</span>
+    <span class="badge">👑 මගේ මැණිකට</span>
     
-    <!-- EDIT NAME HERE -->
-    <h1>Happy Birthday, [Name]! 💖</h1>
-    <p class="subtitle">You make my entire world brighter every single day ✨</p>
+    <h1>සුබ උපන්දිනක් Sankuttan Bole! 💖</h1>
+    <p class="subtitle">ඔයා මගේ ජීවිතේ හැමදාම එළිය කරනවා ✨</p>
 
     <!-- Interactive Cake -->
     <div class="cake-container" onclick="blowCandle()">
       <div class="cake" id="cakeIcon">🎂</div>
-      <p class="hint" id="cakeHint">Tap the cake to blow out the candle & make a wish! 🕯️</p>
+      <p class="hint" id="cakeHint">කේක් එක ටච් කරලා මේழுகுවර්තිය නිවලා ප්‍රාර්ථනාවක් කරන්න! 🕯️</p>
     </div>
 
     <!-- Playful Trap Question -->
     <div class="question-box">
-      <p id="questionText">Quick question: Who loves you more than anyone else in the world? 🙈</p>
+      <p id="questionText">ලෝකෙ ඉන්න ලස්සනම, ආදරණීයම කෙල්ල කවුද? 🙈</p>
       <div class="btn-group">
-        <button class="btn-yes" onclick="sayYes()">YOU DO! 🥰</button>
-        <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">NOPE 😜</button>
+        <button class="btn-yes" onclick="sayYes()">ඔයා තමයි! 🥰</button>
+        <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">වෙන කෙනෙක් 😜</button>
       </div>
     </div>
 
     <!-- Hidden Romantic Letter -->
     <div class="letter-card" id="letterCard">
-      <div class="letter-title">I knew you'd pick that! 😉❤️</div>
-      <!-- EDIT YOUR ROMANTIC MESSAGE HERE -->
+      <div class="letter-title">මං දැනන් හිටියා ඔයා ඒකම තෝරයි කියලා! 😉❤️</div>
       <p>
-        Happy Birthday to the most amazing, wonderful, and beautiful person in my life.
+        මගේ මුළු ජීවිතේම වෙච්ච ආදරණීය Sankuttan Bole ට සුබම සුබ උපන්දිනයක් වේවා!
       </p>
       <p>
-        Thank you for bringing so much endless joy, laughter, and warmth into every moment we share. Seeing you smile is genuinely my favorite thing in the world.
+        අපි එකට ඉන්න හැම මොහොතකම මගේ හිතට ලැබෙන සතුටටත්, ආදරයටත් ගොඩක් ස්තූතියි. ඔයාගේ හිනාව තමයි මගේ ලෝකෙ තියෙන ලස්සනම දේ.
       </p>
       <p>
-        May this year bring you all the love, happiness, and success you so deeply deserve. I’m so grateful to have you in my life.
+        මේ ලැබුවා වූ අලුත් අවුරුද්ද ඔයා පතන හැම හීනයක්ම සැබෑ වෙන, ආදරයෙන් හා සතුටෙන් පිරුණු සුන්දර අවුරුද්දක් වේවා කියලා මම හදවතින්ම ප්‍රාර්ථනා කරනවා.
       </p>
-      <div class="signature">Forever & always, <br> [Your Name] 💖</div>
+      <div class="signature">හැමදාමත් ඔයාගේම, <br> Babe 💖</div>
     </div>
   </div>
 
@@ -276,7 +277,7 @@
       
       if (!candleBlown) {
         cake.textContent = '🍰';
-        hint.textContent = 'Candle blown! May all your sweet wishes come true ✨💖';
+        hint.textContent = 'ප්‍රාර්ථනාව සාර්ථක වේවා! සුබම සුබ උපන්දිනයක් ✨💖';
         candleBlown = true;
         
         // Trigger celebratory heart/pink confetti
@@ -300,7 +301,7 @@
     // "YES" button click logic
     function sayYes() {
       document.getElementById('letterCard').style.display = 'block';
-      document.getElementById('questionText').textContent = '100% Correct! Here is my birthday letter to you: 👇❤️';
+      document.getElementById('questionText').textContent = 'නිවැරදි පිළිතුර! මෙන්න ඔයාගේ උපන්දින පණිවිඩය: 👇❤️';
       
       // Heart Shower Burst
       confetti({
