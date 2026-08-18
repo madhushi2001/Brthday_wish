@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday! 🎂✨</title>
+  <title>Happy Birthday, My Love! 💖✨</title>
   <!-- Google Fonts & Canvas-Confetti CDN -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
     :root {
-      --primary: #ff6b81;
-      --secondary: #ffa502;
-      --bg: #ffeaa7;
+      --primary: #ff4d6d;
+      --secondary: #ff758f;
+      --accent: #ffb3c1;
+      --bg-start: #ffccd5;
+      --bg-end: #fff0f3;
       --card-bg: #ffffff;
-      --text: #2f3542;
+      --text: #590d22;
     }
 
     * {
@@ -25,75 +27,115 @@
 
     body {
       font-family: 'Outfit', sans-serif;
-      background: linear-gradient(135deg, #fd79a8, #ffeaa7);
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
       color: var(--text);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating Background Hearts Animation */
+    .bg-heart {
+      position: absolute;
+      color: rgba(255, 77, 109, 0.25);
+      font-size: 1.5rem;
+      animation: floatUp 8s infinite linear;
+      z-index: 0;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
     .container {
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 30px 24px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-radius: 28px;
+      padding: 36px 24px;
       max-width: 480px;
       width: 100%;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 45px rgba(255, 77, 109, 0.2);
       text-align: center;
       position: relative;
-      overflow: hidden;
+      z-index: 1;
+      border: 2px solid #ffffff;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ffe5ec;
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
     }
 
     h1 {
       font-family: 'Fredoka', sans-serif;
       color: var(--primary);
-      font-size: 2rem;
-      margin-bottom: 8px;
+      font-size: 2.1rem;
+      margin-bottom: 6px;
+      line-height: 1.2;
     }
 
     .subtitle {
       font-size: 0.95rem;
-      color: #747d8c;
+      color: #a4133c;
       margin-bottom: 24px;
+      font-weight: 500;
     }
 
-    /* Cake Styling */
+    /* Interactive Cake */
     .cake-container {
-      margin: 20px auto;
+      margin: 15px auto 20px;
       cursor: pointer;
       display: inline-block;
+      position: relative;
     }
 
     .cake {
-      font-size: 80px;
+      font-size: 85px;
       line-height: 1;
-      transition: transform 0.2s ease;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       user-select: none;
+      filter: drop-shadow(0 8px 12px rgba(255, 77, 109, 0.2));
     }
 
     .cake:hover {
-      transform: scale(1.1) rotate(-5deg);
+      transform: scale(1.12) rotate(-3deg);
     }
 
     .hint {
-      font-size: 0.8rem;
-      color: #a4b0be;
-      margin-top: 4px;
+      font-size: 0.85rem;
+      color: var(--secondary);
+      margin-top: 6px;
+      font-weight: 600;
     }
 
-    /* Funny Trapping Buttons Section */
+    /* Trapping Question Box */
     .question-box {
-      background: #f1f2f6;
-      border-radius: 16px;
-      padding: 20px;
+      background: #fff0f3;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 22px 18px;
       margin: 24px 0;
     }
 
     .question-box p {
       font-weight: 600;
-      margin-bottom: 16px;
+      color: #800f2f;
+      margin-bottom: 18px;
+      font-size: 1.05rem;
     }
 
     .btn-group {
@@ -101,13 +143,13 @@
       justify-content: center;
       gap: 12px;
       position: relative;
-      min-height: 50px;
+      min-height: 52px;
     }
 
     button {
       font-family: 'Fredoka', sans-serif;
       font-size: 1rem;
-      padding: 12px 24px;
+      padding: 12px 28px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
@@ -115,122 +157,157 @@
     }
 
     .btn-yes {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      box-shadow: 0 4px 12px rgba(255, 107, 129, 0.4);
+      box-shadow: 0 6px 18px rgba(255, 77, 109, 0.4);
     }
 
     .btn-yes:hover {
-      transform: scale(1.05);
-      background: #ee5253;
+      transform: scale(1.06);
+      box-shadow: 0 8px 22px rgba(255, 77, 109, 0.5);
     }
 
     .btn-no {
-      background: #ced6e0;
-      color: #57606f;
+      background: #ffe5ec;
+      color: var(--primary);
       position: absolute;
-      right: 40px;
+      right: 35px;
+      font-weight: 600;
     }
 
-    /* Secret Love Letter */
+    /* Secret Heartfelt Letter */
     .letter-card {
       display: none;
-      background: #fff0f3;
-      border: 2px dashed var(--primary);
-      border-radius: 16px;
-      padding: 20px;
+      background: #ffffff;
+      border: 2px dashed var(--secondary);
+      border-radius: 20px;
+      padding: 24px;
       margin-top: 20px;
-      animation: fadeIn 0.5s ease forwards;
+      box-shadow: 0 10px 25px rgba(255, 77, 109, 0.1);
+      animation: fadeIn 0.6s ease forwards;
+      text-align: left;
+    }
+
+    .letter-title {
+      font-family: 'Dancing Script', cursive;
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 12px;
+      text-align: center;
     }
 
     .letter-card p {
-      line-height: 1.6;
-      font-size: 0.95rem;
-      color: #2f3542;
+      line-height: 1.7;
+      font-size: 0.98rem;
+      color: #590d22;
+      margin-bottom: 12px;
+    }
+
+    .signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--primary);
+      text-align: right;
+      margin-top: 16px;
+      font-weight: bold;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
+  <!-- Background Floating Hearts -->
+  <div class="bg-heart" style="left: 10%; animation-delay: 0s;">💖</div>
+  <div class="bg-heart" style="left: 25%; animation-delay: 2s;">💕</div>
+  <div class="bg-heart" style="left: 45%; animation-delay: 4s;">✨</div>
+  <div class="bg-heart" style="left: 70%; animation-delay: 1s;">💗</div>
+  <div class="bg-heart" style="left: 85%; animation-delay: 3s;">🌸</div>
+
   <div class="container">
+    <span class="badge">👑 To My Favorite Person</span>
+    
     <!-- EDIT NAME HERE -->
-    <h1>Happy Birthday, [Name]! 🎉</h1>
-    <p class="subtitle">Another year older, but definitely not wiser! 😜</p>
+    <h1>Happy Birthday, [Name]! 💖</h1>
+    <p class="subtitle">You make my entire world brighter every single day ✨</p>
 
     <!-- Interactive Cake -->
     <div class="cake-container" onclick="blowCandle()">
       <div class="cake" id="cakeIcon">🎂</div>
-      <p class="hint" id="cakeHint">Click the cake to blow the candle!</p>
+      <p class="hint" id="cakeHint">Tap the cake to blow out the candle & make a wish! 🕯️</p>
     </div>
 
-    <!-- Funny Trap Question -->
+    <!-- Playful Trap Question -->
     <div class="question-box">
-      <p id="questionText">Are you ready to admit I'm your favorite person?</p>
+      <p id="questionText">Quick question: Who loves you more than anyone else in the world? 🙈</p>
       <div class="btn-group">
-        <button class="btn-yes" onclick="sayYes()">YES! ❤️</button>
-        <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">NO 😜</button>
+        <button class="btn-yes" onclick="sayYes()">YOU DO! 🥰</button>
+        <button class="btn-no" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">NOPE 😜</button>
       </div>
     </div>
 
-    <!-- Hidden Lovely Letter -->
+    <!-- Hidden Romantic Letter -->
     <div class="letter-card" id="letterCard">
-      <h2 style="color: var(--primary); margin-bottom: 10px; font-family: 'Fredoka';">You couldn't say no anyway! 😂</h2>
-      <!-- EDIT YOUR LOVELY MESSAGE HERE -->
+      <div class="letter-title">I knew you'd pick that! 😉❤️</div>
+      <!-- EDIT YOUR ROMANTIC MESSAGE HERE -->
       <p>
-        Jokes aside, I hope your special day is as incredible, bright, and wonderful as you are! 
-        May this year bring you endless laughter, delicious cake, and everything you’ve been wishing for. 
-        <br><br>
-        <strong>Stay awesome and keep shining! ✨💖</strong>
+        Happy Birthday to the most amazing, wonderful, and beautiful person in my life.
       </p>
+      <p>
+        Thank you for bringing so much endless joy, laughter, and warmth into every moment we share. Seeing you smile is genuinely my favorite thing in the world.
+      </p>
+      <p>
+        May this year bring you all the love, happiness, and success you so deeply deserve. I’m so grateful to have you in my life.
+      </p>
+      <div class="signature">Forever & always, <br> [Your Name] 💖</div>
     </div>
   </div>
 
   <script>
     let candleBlown = false;
 
-    // Blow candle logic + Confetti Burst
+    // Blow candle logic + Romantic Heart Confetti Burst
     function blowCandle() {
       const cake = document.getElementById('cakeIcon');
       const hint = document.getElementById('cakeHint');
       
       if (!candleBlown) {
         cake.textContent = '🍰';
-        hint.textContent = 'Candle blown! Make a wish ✨';
+        hint.textContent = 'Candle blown! May all your sweet wishes come true ✨💖';
         candleBlown = true;
         
-        // Trigger celebratory confetti
+        // Trigger celebratory heart/pink confetti
         confetti({
           particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffffff']
         });
       }
     }
 
-    // Funny runaway "NO" button algorithm
+    // Playful runaway "NO" button algorithm
     function moveNoButton() {
       const noBtn = document.getElementById('noBtn');
-      const x = Math.floor(Math.random() * 200) - 100;
-      const y = Math.floor(Math.random() * 100) - 50;
+      const x = Math.floor(Math.random() * 220) - 110;
+      const y = Math.floor(Math.random() * 110) - 55;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
 
     // "YES" button click logic
     function sayYes() {
       document.getElementById('letterCard').style.display = 'block';
-      document.getElementById('questionText').textContent = 'Correct answer! 🎉 Here is your birthday card:';
+      document.getElementById('questionText').textContent = '100% Correct! Here is my birthday letter to you: 👇❤️';
       
-      // Heart Confetti shower
+      // Heart Shower Burst
       confetti({
-        particleCount: 80,
+        particleCount: 120,
         spread: 100,
         origin: { y: 0.5 },
-        colors: ['#ff6b81', '#ff4757', '#ffffff']
+        colors: ['#ff4d6d', '#ff758f', '#ffffff', '#ffccd5']
       });
     }
   </script>
