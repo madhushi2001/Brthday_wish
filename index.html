@@ -1,20 +1,468 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Birthday — Wishing App</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome for extra icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: linear-gradient(145deg, #0b0c1a 0%, #1a1e30 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 3.5rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 215, 0, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-content {
+      flex: 1 1 300px;
+    }
+
+    .title {
+      font-size: 3.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f9e05d, #f5b041, #f1c40f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(241, 196, 15, 0.3);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      margin: 0.75rem 0 1.8rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      border-left: 4px solid #f1c40f;
+      padding-left: 1.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.8rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #f1c40f, #f39c12);
+      color: #0b0c1a;
+      border: none;
+      font-weight: 700;
+    }
+
+    .btn.primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(241, 196, 15, 0.5);
+    }
+
+    .btn.ghost {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      color: #f9e05d;
+    }
+
+    .btn.ghost:hover {
+      background: rgba(241, 196, 15, 0.15);
+      border-color: #f1c40f;
+      transform: translateY(-2px);
+    }
+
+    /* --- Cake (3D style) --- */
+    .hero-media {
+      flex: 0 0 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cake {
+      position: relative;
+      width: 150px;
+      height: 170px;
+      cursor: pointer;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6));
+      transition: transform 0.3s;
+    }
+
+    .cake:hover {
+      transform: scale(1.03);
+    }
+
+    .layer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 20px 20px 8px 8px;
+      width: 100%;
+      height: 40px;
+      background: #d4a373;
+      box-shadow: inset 0 -6px 0 #b5835a, 0 8px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .layer.top {
+      bottom: 80px;
+      width: 75%;
+      height: 35px;
+      background: #fad3a0;
+      box-shadow: inset 0 -4px 0 #d4a373, 0 8px 18px rgba(0, 0, 0, 0.4);
+      border-radius: 30px 30px 12px 12px;
+    }
+
+    .layer.mid {
+      bottom: 45px;
+      width: 90%;
+      height: 38px;
+      background: #e9b37e;
+      box-shadow: inset 0 -5px 0 #c58d5e, 0 8px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .layer.base {
+      bottom: 5px;
+      width: 100%;
+      height: 44px;
+      background: #d4a373;
+      box-shadow: inset 0 -6px 0 #b5835a, 0 8px 18px rgba(0, 0, 0, 0.5);
+      border-radius: 18px 18px 12px 12px;
+    }
+
+    .candle {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 40px;
+      background: linear-gradient(180deg, #f7d44a, #e6b422);
+      border-radius: 8px 8px 4px 4px;
+      box-shadow: 0 6px 0 #b38b2a, 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .candle::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 14px;
+      background: #f1c40f;
+      border-radius: 50% 50% 50% 50% / 60% 60% 20% 20%;
+      filter: blur(0.5px);
+      box-shadow: 0 0 20px #f39c12, 0 0 40px #f1c40f, 0 0 80px #f39c12;
+      animation: flicker 0.9s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateX(-50%) scale(1.2) rotate(3deg); opacity: 1; }
+    }
+
+    /* --- Counter --- */
+    .counter {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0 3rem;
+    }
+
+    .counter-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      padding: 1.8rem 3rem;
+      border-radius: 80px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .counter-card:hover {
+      border-color: #f1c40f;
+      background: rgba(255, 215, 0, 0.05);
+    }
+
+    .count {
+      font-size: 4.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f9e05d, #f39c12);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+
+    .label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      font-weight: 300;
+    }
+
+    /* --- Gallery --- */
+    .gallery h2 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #f9e05d;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      border-bottom: 2px solid rgba(241, 196, 15, 0.2);
+      padding-bottom: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .grid img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      transition: 0.3s;
+      cursor: pointer;
+      filter: brightness(0.9) saturate(1.1);
+    }
+
+    .grid img:hover {
+      transform: scale(1.04) rotate(-1deg);
+      border-color: #f1c40f;
+      filter: brightness(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    /* --- Lightbox --- */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 999;
+      padding: 2rem;
+    }
+
+    .lightbox.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 2.8rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 200;
+    }
+
+    .lb-close:hover {
+      color: #f1c40f;
+      transform: rotate(90deg);
+    }
+
+    #lbImg {
+      max-width: 80%;
+      max-height: 70vh;
+      border-radius: 32px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .lb-caption {
+      color: #f0e6d0;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      background: rgba(0,0,0,0.4);
+      padding: 0.6rem 2rem;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* --- Birthday Card (flip) --- */
+    .card-area {
+      display: flex;
+      justify-content: center;
+      margin: 3rem 0 1.5rem;
+    }
+
+    .card {
+      width: 320px;
+      height: 200px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.8rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .card-front {
+      background: linear-gradient(145deg, #1e233b, #2a2f4a);
+      color: #f9e05d;
+      transform: rotateY(0deg);
+    }
+
+    .card-front h3 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .card-front p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .card-back {
+      background: linear-gradient(145deg, #f9e05d, #f5b041);
+      color: #0b0c1a;
+      transform: rotateY(180deg);
+      font-weight: 500;
+    }
+
+    .card-back h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-back p {
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .card-back .sign {
+      margin-top: 0.8rem;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .card.flipped .card-front {
+      transform: rotateY(-180deg);
+    }
+
+    .card.flipped .card-back {
+      transform: rotateY(0deg);
+    }
+
+    /* --- Confetti canvas --- */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container { padding: 1.5rem; }
+      .title { font-size: 2.8rem; }
+      .hero { flex-direction: column; align-items: center; text-align: center; }
+      .subtitle { border-left: none; padding-left: 0; }
+      .hero-actions { justify-content: center; }
+      .counter-card { padding: 1rem 2rem; }
+      .count { font-size: 3.5rem; }
+      .card { width: 280px; height: 190px; }
+    }
+
+    @media (max-width: 450px) {
+      .title { font-size: 2.2rem; }
+    }
+  </style>
 </head>
 <body>
   <main class="container">
+    <!-- Hero -->
     <header class="hero">
       <div class="hero-content">
-        <h1 class="title">Happy Birthday, Baby! 🎉</h1>
+        <h1 class="title"><i class="fas fa-star" style="color: #f1c40f; font-size: 2.8rem; margin-right: 8px;"></i> Happy Birthday!</h1>
         <p class="subtitle">To the one who makes every day brighter — stay awesome.</p>
         <div class="hero-actions">
-          <button id="celebrateBtn" class="btn primary">Celebrate!</button>
-          <button id="openCardBtn" class="btn ghost">Open Birthday Card</button>
+          <button id="celebrateBtn" class="btn primary"><i class="fas fa-glass-cheers"></i> Celebrate!</button>
+          <button id="openCardBtn" class="btn ghost"><i class="fas fa-envelope-open-text"></i> Open Card</button>
         </div>
       </div>
       <div class="hero-media">
@@ -22,26 +470,23 @@
           <div class="layer top"></div>
           <div class="layer mid"></div>
           <div class="layer base"></div>
-          <div class="candle">
-            <div class="flame"></div>
-          </div>
+          <div class="candle"><div class="flame"></div></div>
         </div>
       </div>
     </header>
 
+    <!-- Counter -->
     <section class="counter">
       <div class="counter-card">
         <div class="count" id="years">0</div>
-        <div class="label">Years of Awesome</div>
+        <div class="label"><i class="fas fa-crown" style="margin-right: 6px;"></i> Years of Awesome</div>
       </div>
-      <!-- days counter removed per request -->
     </section>
 
+    <!-- Gallery -->
     <section class="gallery">
-      <h2>Memories</h2>
-      <div class="grid" id="galleryGrid">
-        <!-- Images will be injected here -->
-      </div>
+      <h2><i class="fas fa-images" style="margin-right: 12px;"></i> Memories</h2>
+      <div class="grid" id="galleryGrid"></div>
     </section>
 
     <!-- Lightbox -->
@@ -51,22 +496,195 @@
       <div id="lbCaption" class="lb-caption"></div>
     </div>
 
+    <!-- Birthday Card Flip -->
     <section class="card-area">
       <div class="card" id="birthdayCard">
         <div class="card-front">
-          <h3>To My Love</h3>
-          <p>Tap to flip and read your message</p>
+          <h3><i class="fas fa-heart" style="color: #f1c40f;"></i> To My Love</h3>
+          <p>Tap to flip & read</p>
         </div>
         <div class="card-back">
-          <h3>Happy Birthday!</h3>
+          <h3>🎂 Happy Birthday!</h3>
           <p>Every moment with you is a treasure. Here's to more laughter, adventures, and quiet moments together. Love you forever.</p>
           <p class="sign">— Yours</p>
         </div>
       </div>
     </section>
 
+    <!-- Confetti canvas -->
     <canvas id="confettiCanvas"></canvas>
   </main>
-  <script src="script.js"></script>
+
+  <script>
+    (function() {
+      // --- years counter (set to 26) ---
+      const yearsSpan = document.getElementById('years');
+      let current = 0;
+      const target = 26;
+      const interval = setInterval(() => {
+        current += 1;
+        yearsSpan.textContent = current;
+        if (current >= target) clearInterval(interval);
+      }, 80);
+
+      // --- Gallery images (lovely placeholders) ---
+      const galleryData = [
+        { src: 'https://picsum.photos/id/26/300/300', alt: 'Memory 1' },
+        { src: 'https://picsum.photos/id/64/300/300', alt: 'Memory 2' },
+        { src: 'https://picsum.photos/id/99/300/300', alt: 'Memory 3' },
+        { src: 'https://picsum.photos/id/135/300/300', alt: 'Memory 4' },
+        { src: 'https://picsum.photos/id/160/300/300', alt: 'Memory 5' },
+        { src: 'https://picsum.photos/id/177/300/300', alt: 'Memory 6' },
+      ];
+
+      const grid = document.getElementById('galleryGrid');
+      galleryData.forEach(item => {
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.alt;
+        img.loading = 'lazy';
+        grid.appendChild(img);
+      });
+
+      // --- Lightbox ---
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose = document.getElementById('lbClose');
+
+      grid.addEventListener('click', (e) => {
+        if (e.target.tagName === 'IMG') {
+          lbImg.src = e.target.src;
+          lbImg.alt = e.target.alt;
+          lbCaption.textContent = e.target.alt;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      lbClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+
+      // --- Flip card ---
+      const card = document.getElementById('birthdayCard');
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+
+      // "Open Birthday Card" button triggers flip
+      document.getElementById('openCardBtn').addEventListener('click', () => {
+        card.classList.add('flipped');
+      });
+
+      // --- Cake candle click : celebrate! ---
+      const cake = document.getElementById('cake');
+      cake.addEventListener('click', () => {
+        triggerCelebration();
+      });
+
+      // --- Celebrate button ---
+      document.getElementById('celebrateBtn').addEventListener('click', triggerCelebration);
+
+      // --- Confetti (improved) ---
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      let confettiPieces = [];
+      let animationFrame;
+
+      function resizeCanvas() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      class Confetti {
+        constructor() {
+          this.x = Math.random() * W;
+          this.y = Math.random() * H - H * 0.2;
+          this.w = Math.random() * 10 + 5;
+          this.h = Math.random() * 6 + 3;
+          this.color = `hsl(${Math.random() * 60 + 30}, 80%, 60%)`;
+          this.vx = (Math.random() - 0.5) * 2.5;
+          this.vy = Math.random() * 3 + 2.5;
+          this.rotation = Math.random() * 360;
+          this.rotSpeed = (Math.random() - 0.5) * 6;
+          this.opacity = Math.random() * 0.6 + 0.5;
+          this.life = 1;
+          this.decay = 0.003 + Math.random() * 0.005;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.vy += 0.06;
+          this.rotation += this.rotSpeed;
+          this.life -= this.decay;
+          this.opacity = this.life * 0.8 + 0.2;
+        }
+        draw(ctx) {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate((this.rotation * Math.PI) / 180);
+          ctx.globalAlpha = Math.min(this.opacity, 0.9);
+          ctx.fillStyle = this.color;
+          ctx.shadowColor = 'rgba(255,215,0,0.2)';
+          ctx.shadowBlur = 12;
+          ctx.fillRect(-this.w/2, -this.h/2, this.w, this.h);
+          ctx.restore();
+        }
+        isDead() { return this.life <= 0 || this.y > H + 30; }
+      }
+
+      function launchConfetti(count = 140) {
+        for (let i = 0; i < count; i++) {
+          confettiPieces.push(new Confetti());
+        }
+        if (!animationFrame) animateConfetti();
+      }
+
+      function animateConfetti() {
+        ctx.clearRect(0, 0, W, H);
+        let alive = false;
+        for (let i = confettiPieces.length - 1; i >= 0; i--) {
+          const p = confettiPieces[i];
+          p.update();
+          p.draw(ctx);
+          if (!p.isDead()) alive = true;
+          else confettiPieces.splice(i, 1);
+        }
+        if (alive || confettiPieces.length > 0) {
+          animationFrame = requestAnimationFrame(animateConfetti);
+        } else {
+          animationFrame = null;
+          ctx.clearRect(0, 0, W, H);
+        }
+      }
+
+      function triggerCelebration() {
+        // burst effect
+        launchConfetti(200);
+        // extra bursts
+        setTimeout(() => launchConfetti(120), 300);
+        setTimeout(() => launchConfetti(100), 700);
+        // also flip card randomly? no, but add a little shake to cake
+        cake.style.transform = 'scale(1.1) rotate(-2deg)';
+        setTimeout(() => cake.style.transform = '', 400);
+      }
+
+      // init with some confetti to be festive
+      setTimeout(() => launchConfetti(50), 200);
+    })();
+  </script>
 </body>
 </html>
