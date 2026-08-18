@@ -302,9 +302,10 @@
   <!-- Background Music Audio Element -->
   <!-- REPLACE THE 'src' WITH YOUR MP3 MUSIC LINK OR LOCAL FILE PATH -->
   <!-- Background Music Audio Element -->
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2021/08/09/audio_2d8dfd490b.mp3?filename=happy-birthday-155461.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Background Music Audio Element -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://codeskulptor-demos.commondatastorage.googleapis.com/rosalita.mp3" type="audio/mpeg">
+</audio>
 
   <!-- Background Floating Hearts -->
   <div class="bg-heart" style="left: 10%; animation-delay: 0s;">💖</div>
@@ -397,7 +398,7 @@
       
       if (!candleBlown) {
         cake.textContent = '🍰';
-        hint.textContent = 'මෙழுகுවර්තිය නිෙව්වා! ඔයාගේ හැම ප්‍රාර්ථනාවක්ම සැබෑ වේවා ✨💖';
+        hint.textContent = 'ඉටිපන්දම් නිෙව්වා! ඔයාගේ හැම ප්‍රාර්ථනාවක්ම සැබෑ වේවා ✨💖';
         candleBlown = true;
         
         // Auto-play music when candle is blown if not playing already
