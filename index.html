@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday — Wishing App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="hero-content">
+        <h1 class="title">Happy Birthday, Baby! 🎉</h1>
+        <p class="subtitle">To the one who makes every day brighter — stay awesome.</p>
+        <div class="hero-actions">
+          <button id="celebrateBtn" class="btn primary">Celebrate!</button>
+          <button id="openCardBtn" class="btn ghost">Open Birthday Card</button>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div id="cake" class="cake" title="Click the candle!">
+          <div class="layer top"></div>
+          <div class="layer mid"></div>
+          <div class="layer base"></div>
+          <div class="candle">
+            <div class="flame"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="counter">
+      <div class="counter-card">
+        <div class="count" id="years">0</div>
+        <div class="label">Years of Awesome</div>
+      </div>
+      <div class="counter-card">
+        <div class="count" id="days">0</div>
+        <div class="label">Days Loved</div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <h2>Memories</h2>
+      <div class="grid" id="galleryGrid">
+        <!-- Images will be injected here -->
+      </div>
+    </section>
+
+    <section class="card-area">
+      <div class="card" id="birthdayCard">
+        <div class="card-front">
+          <h3>To My Love</h3>
+          <p>Tap to flip and read your message</p>
+        </div>
+        <div class="card-back">
+          <h3>Happy Birthday!</h3>
+          <p>Every moment with you is a treasure. Here's to more laughter, adventures, and quiet moments together. Love you forever.</p>
+          <p class="sign">— Yours</p>
+        </div>
+      </div>
+    </section>
+
+    <canvas id="confettiCanvas"></canvas>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
